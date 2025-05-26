@@ -1,0 +1,31 @@
+name: Run Postman Tests with Newman and Generate HTML Report
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  newman-test:
+    runs-on: ubuntu-latest  # veya windows-latest (linux tavsiye)
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install Newman globally
+        run: npm install -g newman
+
+      - name: Run Postman collection with Newman and generate HTML report
+        run: |
+          newman run Deneme.postman_collection.json -r html --reporter-html-export=report.html
+
+      - name: Upload HTML report as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: newman-html-report
+          path: report.html
