@@ -16,8 +16,10 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install Newman globally
-        run: npm install -g newman
+      - name: Install Newman and reporter
+        run: |
+          npm install -g newman
+          npm install -g newman-reporter-html
 
       - name: Run Postman collection with Newman and generate HTML report
         run: |
