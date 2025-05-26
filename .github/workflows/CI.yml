@@ -24,7 +24,7 @@ jobs:
           newman run Deneme.postman_collection.json -r html --reporter-html-export=report.html
 
       - name: Upload HTML report as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: newman-html-report
           path: report.html
