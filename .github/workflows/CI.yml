@@ -1,3 +1,10 @@
+name: Newman API Testleri
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   newman-test:
     runs-on: ubuntu-latest
